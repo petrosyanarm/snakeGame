@@ -1,0 +1,168 @@
+@use "./base/variables" as *;
+
+body{
+    padding: 0;
+}
+.page{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.block{
+    width: 40%;
+    padding-top: 50px;
+}
+.scoreBox{
+    width: 100%;
+    height: 100px;
+    background-color: $bgHeader;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.foodScore{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+.foodScore_food{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $colorMain;
+    margin-left: 20px;
+}
+.recordScore{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+.recordScoreCup{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: yellow;
+    margin-left: 15px;
+}
+.game_box{
+    width: 100%;
+    height: calc(100vh - 240px);
+    background-color: $bgGameBox;
+}
+.board{
+    background-color: $bgGameBox;
+    padding: 30px;
+    position: relative;
+}
+.table{
+    background-color: $bgBoard;
+}
+.td{
+    width: 37px;
+    height: 37px;
+    background-color: rgb(30, 141, 30);
+}
+.food{
+    // width: 20px;
+    background-color: $colorMain;
+    border-radius: 30px;
+}
+.snakeHead{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+}
+.snake{
+    background-color: $bgSnake;
+    border-radius: 25px;
+    position: relative;
+}
+.snakeHeadEyes{
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+.gameOverModal{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+}
+.pauseModal{
+    width: 270px;
+    height: 350px;
+    background-color: black;
+    position: absolute;
+    top:20%;
+    left:35%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    border-radius: 20px;
+}
+.pauseModal button{
+    width: 120px;
+    height: 65px;
+    background-color: $bgSnake;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+}
+.settingsModal{
+    width: 300px;
+    height: 240px;
+    background-color: black;
+    position: absolute;
+    top:20%;
+    left:35%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    border-radius: 20px;
+}
+.settingsModal button{
+    width: 110px;
+    height: 50px;
+    background-color: $bgSnake;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+}
+.levelModal{
+    width: 300px;
+    height: 150px;
+    background-color: black;
+    position: absolute;
+    top:20%;
+    left:35%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    border-radius: 20px;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="block">
+        <div class="scoreBox">
+          <div class="foodScore">
+            <div class="foodScore_food"></div>
+            <span class="score">0</span>
+          </div>
+          <div class="recordScore">
+            <div class="recordScoreCup"></div>
+            <span class="recordScoreNum">0</span>
+          </div>
+        </div>
+        <div class="game_box">
+          <div class="board">
+            <div class="gameOverModal">
+              <h1>GAME OVER !!</h1>
+              <h3 class="gameOverScore">Final Score : </h3>
+              <button id="gameOverBtnRestart">Restart</button>
+            </div>
+            <div class="pauseModal">
+              <button id="btnResume">Resume</button>
+              <button id="btnRestart">Restart</button>
+              <button id="btnSettings">Settings</button>
+            </div>
+            <div class="settingsModal">
+              <button id="btnLevel">Difficulty</button>
+              <button>Theme</button>
+              <button>Sound</button>
+            </div>
+            <div class="levelModal">
+              <button>Easy</button>
+              <button>Medium</button>
+              <button>Hard</button>
+            </div>
+            <div class="snake"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
