@@ -1,0 +1,69 @@
+@use "./variables" as *;
+
+@mixin gameOverAndStartModal(){
+    width: 100%;
+    height: 100%;
+    background-color: rgb(85, 177, 148);
+    position: absolute;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    z-index: 999;
+}
+
+@mixin flexColumn(){
+    display: none;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+@mixin mobileArrowBtn(){
+    width: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    background-color:$bgBoard;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@mixin pauseModalButton(){
+    width: 120px;
+    height: 65px;
+    background-color: $bgSnake;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+}
+
+@mixin btnStartGameAndSettings(){
+    width: 20%;
+    height: 40px;
+    background-color: $bgHeader;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+@mixin settingsModalBtns(){
+    width: 100%;
+    height: 50px;
+    background-color: $bgSnake;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    animation-duration: 300s;
+    border-radius: 15px;
+    border: none;
+}

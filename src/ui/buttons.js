@@ -1,0 +1,20 @@
+export const buttons = {
+  startGame: document.getElementById("btnStartGame"),
+  settings: document.getElementById("btnSettings"),
+  settingsModalBackBtn : document.getElementById("settingsModalBackBtn"),
+  resume: document.getElementById("btnResume"),
+  restart: document.getElementById("btnRestart"),
+  mainMenu: document.getElementById("btnMainMenu"),
+  gameOverRestart: document.getElementById("gameOverBtnRestart"),
+  level: document.getElementById("btnLevel"),
+  easy:document.getElementById('btnEasyLevel'),
+  medium:document.getElementById('btnMediumLevel'),
+  hard:document.getElementById('btnHardLevel'),
+  themeToggle: document.getElementById('btnThemeToggle'),
+  btnTheme:document.getElementById('btnTheme'),
+  btnVolume:document.getElementById('btnVolume'),
+  arrowUp:document.getElementById('up'),
+  arrowDown:document.getElementById('down'),
+  arrowLeft:document.getElementById('left'),
+  arrowRight:document.getElementById('right')
+};

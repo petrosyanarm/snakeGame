@@ -1,8 +1,18 @@
 @use "./base/variables" as *;
+@use "./base/mixins" as *;
 
-body{
-    padding: 0;
+.cell {
+  width: 100%;
+  height: 100%;
+  background: #a2d149;
+  box-sizing: border-box;
+  aspect-ratio: 1 / 1;
 }
+
+.cell-dark {  
+  background-color: rgb(30, 141, 30);
+}
+
 .page{
     width: 100%;
     display: flex;
@@ -17,7 +27,12 @@ body{
     height: 100px;
     background-color: $bgHeader;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 20px;
+}
+.scores{
+    display: flex;
     gap: 20px;
 }
 .foodScore{
@@ -26,12 +41,9 @@ body{
     gap: 10px;
     color: white;
 }
-.foodScore_food{
+.foodScoreRound img{
     width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: $colorMain;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .recordScore{
     display: flex;
@@ -40,129 +52,395 @@ body{
     color: white;
 }
 .recordScoreCup{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: yellow;
+    font-size: 38px;
+    color: yellow;
     margin-left: 15px;
 }
-.game_box{
+.volumeBox{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+.volumeBox button{
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 37px;
+    position: relative;
+}
+#btnVolume.muted::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  z-index: 999;
+  background: white;
+  top: 42%;
+  left: 0;
+  transform: rotate(-45deg);
+}
+.gameBox{
     width: 100%;
-    height: calc(100vh - 240px);
+    height: auto;
     background-color: $bgGameBox;
 }
-.board{
-    background-color: $bgGameBox;
-    padding: 30px;
-    position: relative;
+
+.board {
+  background-color: $bgGameBox;
+  position: relative;
+  grid-template-columns: repeat(20, 1fr);
+  padding: 20px;
 }
-.table{
-    background-color: $bgBoard;
+
+.grid {
+  display: grid;
+  width: 100%;
+  height:100%;
 }
-.td{
-    width: 37px;
-    height: 37px;
-    background-color: rgb(30, 141, 30);
+
+.food {
+  background-image: url("./images/apple.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.food{
-    // width: 20px;
-    background-color: $colorMain;
-    border-radius: 30px;
+
+.snake {
+  background: #4f6df5;
+  border-radius: 12px;
+  position: relative;
+  background: linear-gradient(to bottom, #5b7cff, #3f5be0);
+//   margin: 0.5px;
 }
-.snakeHead{
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 10px;
-    position: absolute;
+.snakeHead {
+  background: #3f5be0;
+  border-radius: 12px;
 }
-.snake{
-    background-color: $bgSnake;
-    border-radius: 25px;
-    position: relative;
+// .snakeHead::before,
+// .snakeHead::after {
+//   content: "";
+//   position: absolute;
+//   width: 10px;
+//   height: 10px;
+//   background: white;
+//   border-radius: 50%;
+//   top: 15px;
+// }
+
+// .snakeHead::before {
+//   left: 2px;
+// }
+
+// .snakeHead::after {
+//   right: 4px;
+// }
+
+.level-easy .snake {
+  background: #4f6df5;
 }
-.snakeHeadEyes{
-    width: 10px;
-    height: 10px;
-    background-color: black;
-    border-radius: 50%;
+
+.level-medium .snake {
+  background: yellow;
 }
+
+.level-hard .snake {
+  background: purple;
+}
+
+.startGameModal{
+    display: flex;
+    @include gameOverAndStartModal();
+}
+
+#btnStartGame{
+    @include btnStartGameAndSettings();
+}
+
+#btnSettings{
+    @include btnStartGameAndSettings();
+}
+
 .gameOverModal{
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    position: absolute;
-    left: 0;
-    top: 0;
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    color: white;
+    @include gameOverAndStartModal();
 }
-.pauseModal{
-    width: 270px;
-    height: 350px;
-    background-color: black;
-    position: absolute;
-    top:20%;
-    left:35%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    color: white;
-    border-radius: 20px;
+
+.pauseModal {
+  width: 40%;
+  height: 330px;
+  background: rgba(85, 177, 148, 0.6);
+  backdrop-filter: blur(12px);
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  z-index: 999;
+  color: white;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  @include flexColumn();
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 25px 70px rgba(6, 219, 6, 0.35);
 }
+
 .pauseModal button{
-    width: 120px;
-    height: 65px;
-    background-color: $bgSnake;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 15px;
-    border: none;
+    @include pauseModalButton();
 }
+
 .settingsModal{
-    width: 300px;
-    height: 240px;
-    background-color: black;
+    width: 52%;
+    height: 300px;
+    background-color: rgb(30, 141, 106);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 25px 70px rgba(6, 219, 6, 0.35);
+    backdrop-filter: blur(12px);
     position: absolute;
     top:20%;
-    left:35%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    left:23%;
+    gap: 10px;
+    padding-left: 30px;
     color: white;
-    border-radius: 20px;
+    z-index: 999;
+    @include flexColumn();
 }
-.settingsModal button{
-    width: 110px;
-    height: 50px;
-    background-color: $bgSnake;
-    color: white;
-    font-size: 14px;
+
+.settingsModalBtns{
+    gap: 13px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.settingsModalHeader{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.settingsModalHeader button{
+    background-color: transparent;
+    font-size: 20px;
+    color: $bgSnake;
+    border:none;
     cursor: pointer;
-    border-radius: 15px;
-    border: none;
 }
-.levelModal{
-    width: 300px;
-    height: 150px;
-    background-color: black;
-    position: absolute;
-    top:20%;
-    left:35%;
+
+.settingsLevelBtn{
+    width: 22%;
+}
+
+.settingsLevel{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#btnLevel{
+    @include settingsModalBtns();
+}
+
+.levelModal {
+  width: 66%;
+  background: linear-gradient(145deg, #1e1e2f, #141421);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 14px;
+  z-index: 999;
+  color: white;
+}
+
+.levelModal button {
+  width: 26%;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.active{
+    background-color: #1e1e2f;
+    color: white;
+}
+
+.settingsThemeBtn{
+    width: 22%;
+}
+
+.settingsTheme{
+  width: 95%;
+  display: flex;
+}
+
+#btnTheme{
+    @include settingsModalBtns();
+}
+
+.themeModal{
+    width: 50%;
+    height: 50px;
+    background-color:transparent;
     display: none;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     color: white;
-    border-radius: 20px;
+    border-radius: 10px;
+    z-index: 999;
 }
+
+#btnSound{
+    @include settingsModalBtns();
+}
+.settingsSoundBtn{
+    width: 22%;
+}
+
+.settingsSound{
+  width: 95%;
+  display: flex;
+}
+
+.soundModal{
+    width: 50%;
+    height: 50px;
+    background-color:transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    border-radius: 10px;
+    z-index: 999;
+}
+
+
+body {
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light {
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.dark {
+  background: #0f172a;
+  color: #fff;
+}
+
+.themeToggle {
+  width: 60px;
+  height: 30px;
+  background: #1e293b;
+  border-radius: 20px;
+  border: none;
+  position: relative;
+//   top: 25px;
+  cursor: pointer;
+  overflow: hidden;
+  color: rgb(207, 207, 7);
+  font-size: 25px;
+}
+
+.themeToggle::before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+body.dark .themeToggle::before {
+  transform: translateX(30px);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.sun {
+  left: 8px;
+}
+
+.moon {
+  right: 8px;
+}
+
+
+#btnVolumeIcon{
+    display: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    top:49%;
+    left:33%;
+    color: white;
+    margin-left: 10%;
+    z-index: 999;
+}
+
+// body.dark .snake{
+//     background-color: white;
+// }
+// body.dark .table{
+//     background-color: $bgDark;
+// }
+// .btnThemeToggle {
+//   cursor: pointer;
+// }
+
+#mobileArrowButtons{
+    width: 90%;
+    height: 150px;
+    display: none;
+    flex-direction: column;
+    gap:2px;
+    justify-content: center;
+    margin-top: 20px;
+}
+.mobileArrowUp{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+.mobileArrowDown{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.mobileArrowSights{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+#up{
+    @include mobileArrowBtn();
+}
+#down{
+    @include mobileArrowBtn();
+}
+#left{
+    @include mobileArrowBtn();
+}
+#right{
+    @include mobileArrowBtn();
+}
+
+
+

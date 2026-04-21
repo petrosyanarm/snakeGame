@@ -1,4 +1,5 @@
-export function teleportSnake(head,count) {
+export function teleportSnake(head,count,level) {
+  if(level === 'hard') return;
   if (head.x < 0) {
     head.x = count - 1;
   }
