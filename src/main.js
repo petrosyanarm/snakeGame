@@ -22,14 +22,16 @@ import { checkWallCollision } from "./settings/levels/checkWallCollision.js";
 import { themeMode } from "./settings/theme/mode.js";
 import { mobileControl } from "./controls/mobile.js";
 import { isEat } from "./game/snake/isEat.js";
+import { setLevelColor } from "./settings/levels/color.js";
 
+const grid = document.createElement("div");
 const currentScore = document.querySelector(".score");
+const recordScore = document.querySelector(".recordScoreNum");
 const cells = [];
 const count = 17;
-const recordScore = document.querySelector(".recordScoreNum");
 
-snakeBoard(count, cells);
-
+snakeBoard(count, cells,grid);
+setLevelColor(state.level,grid);
 state.snake = createSnake();
 state.food = createFood(count);
 
@@ -76,7 +78,10 @@ eventsUI({
   state,
   gameLoop,
   count,
-  currentScore
+  currentScore,
+  setLoop,
+  levels,
+  game,
 });
 
 const records = loadRecords()
@@ -86,7 +91,8 @@ const {updateLevelButtons} = levelUI({
   state,
   records,
   isUnlocked,
-  recordScore
+  recordScore,
+  grid
 });
 
 themeMode()

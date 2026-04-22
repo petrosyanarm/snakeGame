@@ -1,14 +1,14 @@
 export const levels = {
   easy: {
-    speed: 350,
+    speed: 400,
     unlockScore: 0,
   },
   medium: {
-    speed: 150,
+    speed: 250,
     unlockScore: 15,
   },
   hard: {
-    speed: 50,
+    speed: 100,
     unlockScore: 20,
   },
 };

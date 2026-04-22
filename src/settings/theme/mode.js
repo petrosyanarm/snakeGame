@@ -1,15 +1,20 @@
-import { buttons } from "../../ui/buttons.js"
+import { buttons } from "../../ui/buttons.js";
 
-const savedTheme = localStorage.getItem('theme')
-export function themeMode(){
-    if(savedTheme === "dark"){
-        document.body.classList.add('dark')
-    }else{
-        document.body.classList.add('light')
-    }
-    buttons.themeToggle.addEventListener("click",()=>{
-        const isDark = document.body.classList.toggle('dark')
-        document.body.classList.toggle("light",!isDark)
-        localStorage.setItem("theme", isDark ? "dark" : "light")
-    })
+export function themeMode() {
+  let currentTheme = localStorage.getItem("theme") || "light";
+  let selectedTheme = currentTheme;
+  applyTheme(currentTheme);
+  buttons.themeToggle.addEventListener("click", () => {
+    selectedTheme = selectedTheme === "dark" ? "light" : "dark";
+  });
+
+  return {
+    getSelectedTheme: () => selectedTheme,
+    setCurrentTheme: (theme) => (currentTheme = theme),
+  };
+}
+
+export function applyTheme(theme) {
+  document.body.classList.toggle("dark", theme === "dark");
+  document.body.classList.toggle("light", theme === "light");
 }

@@ -1,6 +1,20 @@
 @use "./base/variables" as *;
 @use "./base/mixins" as *;
 
+body {
+  transition: background 0.3s, color 0.3s;
+
+  &.light {
+  background: $bgLight;
+  color: $textColorLight;
+  }
+
+  &.dark {
+  background: $bgDark;
+  color: $textColorDark;
+  }
+}
+
 .cell {
   width: 100%;
   height: 100%;
@@ -15,8 +29,7 @@
 
 .page{
     width: 100%;
-    display: flex;
-    justify-content: center;
+    @include flex(center);
 }
 .block{
     width: 40%;
@@ -26,9 +39,7 @@
     width: 100%;
     height: 100px;
     background-color: $bgHeader;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between,center);
     gap: 20px;
 }
 .scores{
@@ -36,8 +47,7 @@
     gap: 20px;
 }
 .foodScore{
-    display: flex;
-    align-items: center;
+    @include flex(center);
     gap: 10px;
     color: white;
 }
@@ -46,8 +56,7 @@
     margin-left: 10px;
 }
 .recordScore{
-    display: flex;
-    align-items: center;
+    @include flex(center);
     gap: 10px;
     color: white;
 }
@@ -57,17 +66,18 @@
     margin-left: 15px;
 }
 .volumeBox{
-    width: 10%;
+    width: 20%;
     display: flex;
+    gap: 15px;
     justify-content: center;
-    margin-right: 10px;
+    margin-right: 5%;
 }
 .volumeBox button{
     cursor: pointer;
     background: transparent;
     border: none;
     color: white;
-    font-size: 37px;
+    font-size: 34px;
     position: relative;
 }
 #btnVolume.muted::after {
@@ -90,7 +100,6 @@
 .board {
   background-color: $bgGameBox;
   position: relative;
-  grid-template-columns: repeat(20, 1fr);
   padding: 20px;
 }
 
@@ -108,45 +117,25 @@
 }
 
 .snake {
-  background: #4f6df5;
-  border-radius: 12px;
+  border-radius: $radius;
   position: relative;
-  background: linear-gradient(to bottom, #5b7cff, #3f5be0);
-//   margin: 0.5px;
+  background: $levelEasy;
 }
 .snakeHead {
   background: #3f5be0;
-  border-radius: 12px;
+  border-radius: $radius;
 }
-// .snakeHead::before,
-// .snakeHead::after {
-//   content: "";
-//   position: absolute;
-//   width: 10px;
-//   height: 10px;
-//   background: white;
-//   border-radius: 50%;
-//   top: 15px;
-// }
-
-// .snakeHead::before {
-//   left: 2px;
-// }
-
-// .snakeHead::after {
-//   right: 4px;
-// }
 
 .level-easy .snake {
-  background: #4f6df5;
+  background: $levelEasy;
 }
 
 .level-medium .snake {
-  background: yellow;
+  background: $levelMedium;
 }
 
 .level-hard .snake {
-  background: purple;
+  background: $levelHard;
 }
 
 .startGameModal{
@@ -165,6 +154,9 @@
 .gameOverModal{
     display: none;
     @include gameOverAndStartModal();
+}
+.gameOverModal button{
+  @include btnStartGameAndSettings();
 }
 
 .pauseModal {
@@ -192,13 +184,13 @@
 
 .settingsModal{
     width: 52%;
-    height: 300px;
+    height: 250px;
     background-color: rgb(30, 141, 106);
     border: 1px solid rgba(255,255,255,0.2);
     box-shadow: 0 25px 70px rgba(6, 219, 6, 0.35);
     backdrop-filter: blur(12px);
     position: absolute;
-    top:20%;
+    top:29%;
     left:23%;
     gap: 10px;
     padding-left: 30px;
@@ -209,7 +201,7 @@
 
 .settingsModalBtns{
     gap: 13px;
-    height: 200px;
+    height: 115px;
     display: flex;
     flex-direction: column;
 }
@@ -223,7 +215,7 @@
 .settingsModalHeader button{
     background-color: transparent;
     font-size: 20px;
-    color: $bgSnake;
+    color: rgb(42, 42, 180);
     border:none;
     cursor: pointer;
 }
@@ -243,24 +235,23 @@
 }
 
 .levelModal {
-  width: 66%;
+  width: 75%;
   background: linear-gradient(145deg, #1e1e2f, #141421);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  border-radius: 14px;
+  @include flexCenter();
+  gap: 10px;
+  border-radius:$radius;
   z-index: 999;
   color: white;
 }
 
 .levelModal button {
-  width: 26%;
+  width: 28%;
   height: 30px;
   border-radius: 10px;
   border: 1px solid;
   cursor: pointer;
+  font-size: 12px;
 }
 
 .active{
@@ -285,53 +276,11 @@
     width: 50%;
     height: 50px;
     background-color:transparent;
-    display: none;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter();
     gap: 10px;
     color: white;
     border-radius: 10px;
     z-index: 999;
-}
-
-#btnSound{
-    @include settingsModalBtns();
-}
-.settingsSoundBtn{
-    width: 22%;
-}
-
-.settingsSound{
-  width: 95%;
-  display: flex;
-}
-
-.soundModal{
-    width: 50%;
-    height: 50px;
-    background-color:transparent;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    border-radius: 10px;
-    z-index: 999;
-}
-
-
-body {
-  transition: background 0.3s, color 0.3s;
-}
-
-body.light {
-  background: #f5f5f5;
-  color: #111;
-}
-
-body.dark {
-  background: #0f172a;
-  color: #fff;
 }
 
 .themeToggle {
@@ -341,7 +290,6 @@ body.dark {
   border-radius: 20px;
   border: none;
   position: relative;
-//   top: 25px;
   cursor: pointer;
   overflow: hidden;
   color: rgb(207, 207, 7);
@@ -379,7 +327,16 @@ body.dark .themeToggle::before {
 .moon {
   right: 8px;
 }
-
+.settingsSave{
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+.settingsSave button{
+  @include btnStartGameAndSettings();
+  margin-right: 6%;
+}
 
 #btnVolumeIcon{
     display: none;
@@ -394,16 +351,6 @@ body.dark .themeToggle::before {
     margin-left: 10%;
     z-index: 999;
 }
-
-// body.dark .snake{
-//     background-color: white;
-// }
-// body.dark .table{
-//     background-color: $bgDark;
-// }
-// .btnThemeToggle {
-//   cursor: pointer;
-// }
 
 #mobileArrowButtons{
     width: 90%;
@@ -429,18 +376,14 @@ body.dark .themeToggle::before {
     justify-content: space-between;
     margin-top: 15px;
 }
-#up{
-    @include mobileArrowBtn();
-}
-#down{
-    @include mobileArrowBtn();
-}
-#left{
-    @include mobileArrowBtn();
-}
+
+#up,
+#down,
+#left,
 #right{
     @include mobileArrowBtn();
 }
+
 
 
 

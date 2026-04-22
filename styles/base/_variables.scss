@@ -1,10 +1,12 @@
 $colorMain:red;
-$size:100px;
 $bgHeader:rgb(4, 95, 4);
 $bgGameBox:rgb(51, 158, 51);
 $bgBoard:rgb(17, 199, 17);
-$bgSnake:rgb(32, 32, 170);
-$bgLight:white;
+$bgLight:#f5f5f5;
 $textColorLight:black;
-$bgDark:rgb(22, 22, 129);
+$bgDark:#0f172a;;
 $textColorDark:white;
+$radius:12px;
+$levelEasy:linear-gradient(to bottom, #5b7cff, #3f5be0);
+$levelMedium:yellow;
+$levelHard:purple;

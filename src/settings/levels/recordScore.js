@@ -5,7 +5,7 @@ export function recordScores(records, level, recordScore) {
 }
 
 const records = loadRecords();
-const savedLevel = localStorage.getItem("snakeLevel") || "easy";
+const savedLevel = localStorage.getItem("level") || "easy";
 const recordScore = document.querySelector(".recordScoreNum");
 
 if (recordScore) {

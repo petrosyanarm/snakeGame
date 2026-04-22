@@ -1,3 +1,15 @@
+body {
+  transition: background 0.3s, color 0.3s;
+}
+body.light {
+  background: #f5f5f5;
+  color: black;
+}
+body.dark {
+  background: #0f172a;
+  color: white;
+}
+
 .cell {
   width: 100%;
   height: 100%;
@@ -14,6 +26,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .block {
@@ -38,6 +51,7 @@
 
 .foodScore {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   color: white;
@@ -50,6 +64,7 @@
 
 .recordScore {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   color: white;
@@ -62,10 +77,11 @@
 }
 
 .volumeBox {
-  width: 10%;
+  width: 20%;
   display: flex;
+  gap: 15px;
   justify-content: center;
-  margin-right: 10px;
+  margin-right: 5%;
 }
 
 .volumeBox button {
@@ -73,7 +89,7 @@
   background: transparent;
   border: none;
   color: white;
-  font-size: 37px;
+  font-size: 34px;
   position: relative;
 }
 
@@ -98,7 +114,6 @@
 .board {
   background-color: rgb(51, 158, 51);
   position: relative;
-  grid-template-columns: repeat(20, 1fr);
   padding: 20px;
 }
 
@@ -116,7 +131,6 @@
 }
 
 .snake {
-  background: #4f6df5;
   border-radius: 12px;
   position: relative;
   background: linear-gradient(to bottom, #5b7cff, #3f5be0);
@@ -128,7 +142,7 @@
 }
 
 .level-easy .snake {
-  background: #4f6df5;
+  background: linear-gradient(to bottom, #5b7cff, #3f5be0);
 }
 
 .level-medium .snake {
@@ -193,6 +207,17 @@
   z-index: 999;
 }
 
+.gameOverModal button {
+  width: 20%;
+  height: 40px;
+  background-color: rgb(4, 95, 4);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
 .pauseModal {
   width: 40%;
   height: 330px;
@@ -216,8 +241,8 @@
 
 .pauseModal button {
   width: 120px;
-  height: 65px;
-  background-color: rgb(32, 32, 170);
+  height: 53px;
+  background-color: rgb(42, 42, 180);
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -227,13 +252,13 @@
 
 .settingsModal {
   width: 52%;
-  height: 300px;
+  height: 250px;
   background-color: rgb(30, 141, 106);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 25px 70px rgba(6, 219, 6, 0.35);
   backdrop-filter: blur(12px);
   position: absolute;
-  top: 20%;
+  top: 29%;
   left: 23%;
   gap: 10px;
   padding-left: 30px;
@@ -246,7 +271,7 @@
 
 .settingsModalBtns {
   gap: 13px;
-  height: 200px;
+  height: 115px;
   display: flex;
   flex-direction: column;
 }
@@ -260,7 +285,7 @@
 .settingsModalHeader button {
   background-color: transparent;
   font-size: 20px;
-  color: rgb(32, 32, 170);
+  color: rgb(42, 42, 180);
   border: none;
   cursor: pointer;
 }
@@ -278,7 +303,7 @@
 #btnLevel {
   width: 100%;
   height: 50px;
-  background-color: rgb(32, 32, 170);
+  background-color: rgb(42, 42, 180);
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -288,24 +313,25 @@
 }
 
 .levelModal {
-  width: 66%;
+  width: 75%;
   background: linear-gradient(145deg, #1e1e2f, #141421);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  border-radius: 14px;
+  gap: 10px;
+  border-radius: 12px;
   z-index: 999;
   color: white;
 }
 
 .levelModal button {
-  width: 26%;
+  width: 28%;
   height: 30px;
   border-radius: 10px;
   border: 1px solid;
   cursor: pointer;
+  font-size: 12px;
 }
 
 .active {
@@ -325,7 +351,7 @@
 #btnTheme {
   width: 100%;
   height: 50px;
-  background-color: rgb(32, 32, 170);
+  background-color: rgb(42, 42, 180);
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -338,61 +364,13 @@
   width: 50%;
   height: 50px;
   background-color: transparent;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  border-radius: 10px;
-  z-index: 999;
-}
-
-#btnSound {
-  width: 100%;
-  height: 50px;
-  background-color: rgb(32, 32, 170);
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  animation-duration: 300s;
-  border-radius: 15px;
-  border: none;
-}
-
-.settingsSoundBtn {
-  width: 22%;
-}
-
-.settingsSound {
-  width: 95%;
   display: flex;
-}
-
-.soundModal {
-  width: 50%;
-  height: 50px;
-  background-color: transparent;
-  display: none;
   justify-content: center;
   align-items: center;
   gap: 10px;
   color: white;
   border-radius: 10px;
   z-index: 999;
-}
-
-body {
-  transition: background 0.3s, color 0.3s;
-}
-
-body.light {
-  background: #f5f5f5;
-  color: #111;
-}
-
-body.dark {
-  background: #0f172a;
-  color: #fff;
 }
 
 .themeToggle {
@@ -440,6 +418,25 @@ body.dark .themeToggle::before {
   right: 8px;
 }
 
+.settingsSave {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.settingsSave button {
+  width: 20%;
+  height: 40px;
+  background-color: rgb(4, 95, 4);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-right: 6%;
+}
+
 #btnVolumeIcon {
   display: none;
   background-color: transparent;
@@ -482,45 +479,9 @@ body.dark .themeToggle::before {
   margin-top: 15px;
 }
 
-#up {
-  width: 60px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: none;
-  color: white;
-  background-color: rgb(17, 199, 17);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-#down {
-  width: 60px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: none;
-  color: white;
-  background-color: rgb(17, 199, 17);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-#left {
-  width: 60px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: none;
-  color: white;
-  background-color: rgb(17, 199, 17);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
+#up,
+#down,
+#left,
 #right {
   width: 60px;
   aspect-ratio: 1/1;

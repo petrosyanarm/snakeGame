@@ -19,7 +19,7 @@ export function handleGameOver(
   modals,
   records,
   updateLevelButtons,
-  recordScore
+  recordScore,
 ) {
   if (!gameOver(state.snake)) return;
 
@@ -37,7 +37,7 @@ export function forceGameOver(
   modals,
   records,
   updateLevelButtons,
-  recordScore
+  recordScore,
 ) {
   clearInterval(gameLoop);
   gameOverScore.textContent = "Final Score : " + state.score;

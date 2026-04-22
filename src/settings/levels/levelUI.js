@@ -1,4 +1,6 @@
+import { applyTheme, themeMode } from "../theme/mode.js";
 import { clearActive } from "./active.js";
+import { setLevelColor } from "./color.js";
 import { recordScores } from "./recordScore.js";
 import { saveLevel } from "./storage.js";
 
@@ -7,43 +9,56 @@ export function levelUI({
   state,
   records,
   isUnlocked,
-  recordScore
+  recordScore,
+  grid,
+  modals,
 }) {
+  let selectedLevel = state.level;
+  const theme = themeMode();
 
-function updateLevelButtons() {
+  function updateLevelButtons() {
     buttons.medium.disabled = !isUnlocked("medium", records);
     buttons.hard.disabled = !isUnlocked("hard", records);
-}
-updateLevelButtons()
-  
+  }
+  updateLevelButtons();
+
   buttons.easy.addEventListener("click", () => {
     clearActive();
-    buttons.easy.classList.add('active')
-    state.level = "easy";
-    recordScores(records, state.level, recordScore);
-    saveLevel(state.level)
-    // document.body.className = "level-" + state.level;
+    buttons.easy.classList.add("active");
+    selectedLevel = "easy";
   });
 
   buttons.medium.addEventListener("click", () => {
     if (!isUnlocked("medium", records)) return;
     clearActive();
-    buttons.medium.classList.add('active')
-    state.level = "medium";
-    recordScores(records, state.level, recordScore);
-    saveLevel(state.level)
-    // document.body.className = "level-" + state.level;
+    buttons.medium.classList.add("active");
+    selectedLevel = "medium";
   });
 
   buttons.hard.addEventListener("click", () => {
     if (!isUnlocked("hard", records)) return;
     clearActive();
-    buttons.hard.classList.add('active')
-    state.level = "hard";
+    buttons.hard.classList.add("active");
+    selectedLevel = "hard";
+  });
+
+  buttons.ok.addEventListener("click", () => {
+    state.level = selectedLevel;
+    saveLevel(state.level);
+    setLevelColor(state.level, grid);
     recordScores(records, state.level, recordScore);
-    saveLevel(state.level)
-    // document.body.className = "level-" + state.level;
-});
-  console.log(records)
-  return  { updateLevelButtons } ;
+    const newTheme = theme.getSelectedTheme();
+    applyTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    theme.setCurrentTheme(newTheme);
+  });
+
+  buttons.settingsModalBackBtn.addEventListener("click", () => {
+    selectedLevel = state.level;
+    clearActive();
+    modals.settings.style.display = "none";
+    modals.start.style.display = "flex";
+  });
+
+  return { updateLevelButtons };
 }

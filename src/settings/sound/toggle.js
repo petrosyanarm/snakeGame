@@ -6,13 +6,11 @@ export function getSound() {
 
 export function toggleSound() {
   const val = !getSound();
-  console.log(val)
   localStorage.setItem("soundOn", val);
   return val;
 }
 
-export function renderSound(){
-  buttons.btnVolume.classList.toggle('muted',!getSound())
+export function renderSound() {
+  buttons.btnVolume.classList.toggle("muted", !getSound());
 }
-renderSound()
-
+renderSound();

@@ -1,4 +1,5 @@
 export function createSnake() {
+  // const center = Math.floor(count/2)
   return [
     { x: 8, y: 6 },
     { x: 7, y: 6 },
@@ -6,7 +7,7 @@ export function createSnake() {
   ];
 }
 
-export function moveSnake(head,snake, eat) {
+export function moveSnake(head, snake, eat) {
   snake.unshift(head);
 
   if (!eat) {

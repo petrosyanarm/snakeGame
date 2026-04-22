@@ -7,14 +7,17 @@ export function setLoop(newLoop) {
   loop = newLoop;
 }
 
+export function pauseGame() {
+  if (loop === null) return;
+
+  clearInterval(loop);
+  modals.pause.style.display = "flex";
+  paused = true;
+}
+
 export function handlePauseKey(event) {
   if (event.key === "p") {
-    clearInterval(loop);
-    modals.pause.style.display = "flex";
-    paused = true;
-  } else {
-    modals.pause.style.display = "none";
-    paused = false;
+    pauseGame();
   }
 }
 

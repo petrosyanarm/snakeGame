@@ -1,11 +1,10 @@
 const board = document.querySelector(".board");
 
-export function snakeBoard(count, cells) {
-  const grid = document.createElement("div");
+export function snakeBoard(count, cells, grid) {
   grid.classList.add("grid");
 
-grid.style.gridTemplateColumns = `repeat(${count}, 1fr)`
-grid.style.gridTemplateRows = `repeat(${count}, 1fr)`
+  grid.style.gridTemplateColumns = `repeat(${count}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${count}, 1fr)`;
 
   for (let i = 0; i < count; i++) {
     for (let j = 0; j < count; j++) {

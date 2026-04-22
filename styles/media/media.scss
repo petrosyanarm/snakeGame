@@ -3,11 +3,14 @@
       width: 50%;
     } 
     .settingsModal {
-      width: 80%;
-      left: 10%;
+      width: 60%;
+      left: 20%;
     }
     .gameBox{
         height: auto;
+    }
+    .levelModal{
+      width: 66%;
     }
 
   }
@@ -17,11 +20,11 @@
       width: 70%;
     }
     .settingsModal {
-      width: 80%;
-      left: 10%;
+      width: 60%;
+      left: 20%;
     }
     .gameBox{
-        height: auto;
+      height: auto;
     }
   }
 
@@ -34,13 +37,17 @@
         height: auto;
     }
     .settingsModal {
-      width: 70%;
+      width: 75%;
+      left: 10%;
     }
     .pauseModal {
       height: 270px;
     }
     .pauseModal button {
       height: 45px;
+    }
+    .levelModal{
+      width: 76%;
     }
   }
   
@@ -72,7 +79,7 @@
       height: 45px;
     }
     .board{
-        padding: 15px;
+      padding: 15px;
     }
     .settingsModal {
       width: 80%;
@@ -88,6 +95,12 @@
       width: 30%;
       height: 25px;
       border-radius: 5px;
+      font-size: 12px;
+    }
+    #btnLevel{
+      font-size: 12px;
+    }
+    #btnTheme{
       font-size: 12px;
     }
   }

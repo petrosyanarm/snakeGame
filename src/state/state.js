@@ -12,5 +12,4 @@ export const state = {
   score: 0,
   paused: false,
   level: loadLevel(),
-  soundOn: localStorage.getItem("soundOn") === "true",
 };
