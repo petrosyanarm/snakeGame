@@ -3,7 +3,6 @@ import { loadLevel } from "../settings/levels/storage.js";
 
 export const state = (count) =>( {
   snake: createSnake(count),
-  lastTail: null,
   food: { x: 0, y: 0 },
   lastFood: null,
   pos: { x: 1, y: 0 },

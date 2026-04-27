@@ -14,7 +14,7 @@ export function resetGame(state, count,currentScore) {
 export function restartGame(state,gameLoop,startGame,count,modals,currentScore,boardBox){
     boardBox.classList.remove('paused')
     clearInterval(gameLoop);
-    resetGame(state,count,currentScore)
+    resetGame(state,count,currentScore);
     closeAllModals()
     startGame();
 }

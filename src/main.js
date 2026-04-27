@@ -25,6 +25,7 @@ const boardBox = document.querySelector('.board')
 const cells = [];
 const count = 17;
 const gameState = state(count)
+const icon = buttons.pause.querySelector('i')
 
 snakeBoard(count, cells,grid,boardBox);
 setLevelColor(null,gameState.level,grid);
@@ -78,7 +79,8 @@ eventsUI({
   setLoop,
   LEVELS,
   game,
-  boardBox
+  boardBox,
+  icon
 });
 
 const records = loadRecords();
@@ -94,3 +96,5 @@ const {updateLevelButtons} = settingsUI({
 
 themeMode();
 mobileControl(gameState)
+
+

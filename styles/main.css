@@ -137,11 +137,11 @@ body.dark .gameBox {
 }
 
 #btnPause {
-  font-size: 33px;
+  font-size: 36px;
 }
 
 #btnVolume {
-  font-size: 27px;
+  font-size: 30px;
 }
 
 #btnVolume.muted::after {

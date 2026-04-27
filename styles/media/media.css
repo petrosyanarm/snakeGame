@@ -27,6 +27,16 @@
   .gameBox {
     height: auto;
   }
+  .foodScoreRound img, .recordScoreCup img {
+    width: 33px;
+    height: 33px;
+  }
+  #btnPause {
+    font-size: 30px;
+  }
+  #btnVolume {
+    font-size: 25px;
+  }
   .settingsModal {
     width: 75%;
   }
@@ -100,6 +110,9 @@
   }
   .settingsModal {
     width: 80%;
+  }
+  #btnVolume.muted::after {
+    width: 40px;
   }
   .levelModal button {
     width: 37%;

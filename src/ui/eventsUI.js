@@ -1,6 +1,5 @@
 import { renderSound, toggleSound } from "../settings/sound/toggle.js";
-import { handlePauseKey } from "./pause.js";
-import { pauseGame } from "./pause.js";
+import { handlePauseKey, togglePause } from "./pause.js";
 import { resetGame } from "./restartGame.js";
 export function eventsUI({
   buttons,
@@ -16,32 +15,36 @@ export function eventsUI({
   setLoop,
   LEVELS,
   game,
-  boardBox
+  boardBox,
+  icon
 }) {
+
   buttons.startGame.addEventListener("click", () => {
     closeAllModals();
     startGame(game, LEVELS, gameState.level, setLoop, gameLoop);
   });
 
-  document.addEventListener("keydown", (event) => handlePauseKey(event, boardBox));
+  document.addEventListener("keydown", (event) => handlePauseKey(event, boardBox,icon));
 
 
   buttons.pause.addEventListener("click", () => {
-    pauseGame(boardBox);
+    togglePause(startGame,boardBox,icon)
   });
 
   buttons.resume.addEventListener("click", () => {
-    resumeGame(startGame,boardBox);
+    resumeGame(startGame,boardBox,icon);
   });
 
   buttons.restart.addEventListener("click", () => {
     restartGame(gameState, gameLoop, startGame, count, modals, currentScore,boardBox);
+    togglePause(startGame,boardBox,icon)
   });
 
   buttons.mainMenu.addEventListener("click", () => {
     resetGame(gameState, count, currentScore);
     closeAllModals();
-    boardBox.classList.remove('paused')
+    boardBox.classList.remove('paused');
+    togglePause(startGame,boardBox,icon)
     modals.start.style.display = "flex";
   });
 
