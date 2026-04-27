@@ -2,7 +2,7 @@
 @use "./base/mixins" as *;
 
 body {
-  transition: background 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 
   &.light {
   background: $bgLight;
@@ -15,88 +15,28 @@ body {
   }
 }
 
+body.dark .startGameModal {
+  background: #087508;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+body.dark .scoreBox {
+ background-color: rgb(3 61 3);
+}
+
 .cell {
   width: 100%;
   height: 100%;
-  background: #a2d149;
   box-sizing: border-box;
   aspect-ratio: 1 / 1;
 }
 
-.cell-dark {  
-  background-color: rgb(30, 141, 30);
+.board.paused {
+  filter: blur(5px);
+  transition: 0.3s;
+  pointer-events: none;
 }
-
-.page{
-    width: 100%;
-    @include flex(center);
-}
-.block{
-    width: 40%;
-    padding-top: 50px;
-}
-.scoreBox{
-    width: 100%;
-    height: 100px;
-    background-color: $bgHeader;
-    @include flex(space-between,center);
-    gap: 20px;
-}
-.scores{
-    display: flex;
-    gap: 20px;
-}
-.foodScore{
-    @include flex(center);
-    gap: 10px;
-    color: white;
-}
-.foodScoreRound img{
-    width: 40px;
-    margin-left: 10px;
-}
-.recordScore{
-    @include flex(center);
-    gap: 10px;
-    color: white;
-}
-.recordScoreCup{
-    font-size: 38px;
-    color: yellow;
-    margin-left: 15px;
-}
-.volumeBox{
-    width: 20%;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-right: 5%;
-}
-.volumeBox button{
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 34px;
-    position: relative;
-}
-#btnVolume.muted::after {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 3px;
-  z-index: 999;
-  background: white;
-  top: 42%;
-  left: 0;
-  transform: rotate(-45deg);
-}
-.gameBox{
-    width: 100%;
-    height: auto;
-    background-color: $bgGameBox;
-}
-
 .board {
   background-color: $bgGameBox;
   position: relative;
@@ -108,6 +48,101 @@ body {
   width: 100%;
   height:100%;
 }
+.cell:nth-child(even) {
+  background-color: #a2d149;
+}
+
+.cell:nth-child(odd) {
+  background-color: rgb(30, 141, 30) ;
+}
+
+body.dark .cell:nth-child(even) {
+  background-color: #579e3e;
+}
+
+body.dark .cell:nth-child(odd) {
+  background-color: #294d0e;
+}
+body.dark .board,
+body.dark .gameBox {
+  background-color: #579e3e;
+}
+
+
+.page{
+    width: 100%;
+    @include flex(center,center);
+}
+.block{
+    width: 40%;
+    padding-top: 50px;
+    position: relative;
+}
+.scoreBox{
+    height: 100px;
+    padding-inline: 15px;
+    background-color: $bgHeader;
+    @include flex(space-between,center);
+    gap: 20px;
+}
+.scores{
+    display: flex;
+    gap: 20px;
+}
+.foodScore{
+    @include flex(center,center);
+    gap: 10px;
+    color: white;
+}
+.foodScoreRound img{
+    width: 40px;
+}
+.recordScore{
+    @include flex(center,center);
+    gap: 10px;
+    color: white;
+}
+.recordScoreCup{
+    margin-left: 15px;
+}
+.recordScoreCup img{
+    width: 40px;
+    height: 40px;
+}
+.volumeBox{
+    display: flex;
+    gap: 20px;
+}
+.volumeBox button{
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: white;
+    position: relative;
+}
+#btnPause{
+  font-size: 33px;
+}
+#btnVolume{
+  font-size: 27px;
+}
+#btnVolume.muted::after {
+  content: "";
+  position: absolute;
+  width: 45px;
+  height: 3px;
+  z-index: 999;
+  background: white;
+  top: 42%;
+  left: 0;
+  transform: rotate(-45deg);
+}
+.gameBox{
+    width: 100%;
+    height: auto;
+    background-color: $bgGameBox;
+    position: relative;
+}
 
 .food {
   background-image: url("./images/apple.png");
@@ -117,13 +152,90 @@ body {
 }
 
 .snake {
-  border-radius: $radius;
+  border-radius: 25%;
   position: relative;
   background: $levelEasy;
 }
 .snakeHead {
-  background: #3f5be0;
-  border-radius: $radius;
+  position: relative;
+  background: radial-gradient(circle at 30% 30%, #7ea2ff 0%, #4e6df0 45%, #2d45ba 100%);
+  border-radius: 35%;
+  box-shadow:
+    inset -2px -2px 4px rgba(0, 0, 0, 0.18),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.22);
+}
+
+.snakeHead::before {
+  content: "";
+  position: absolute;
+  top: 24%;
+  left: 18%;
+  width: 64%;
+  height: 30%;
+  border-radius: 45%;
+  background:
+    radial-gradient(circle at 22% 50%, #ffffff 0 18%, transparent 19%),
+    radial-gradient(circle at 78% 50%, #ffffff 0 18%, transparent 19%),
+    radial-gradient(circle at 27% 54%, #a8b9eb 0 7%, transparent 8%),
+    radial-gradient(circle at 73% 54%, #1c243d 0 7%, transparent 8%),
+    radial-gradient(circle at 24% 46%, rgba(255, 255, 255, 0.95) 0 3%, transparent 4%),
+    radial-gradient(circle at 76% 46%, rgba(255, 255, 255, 0.95) 0 3%, transparent 4%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.18));
+}
+
+.snakeHead::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: 20%;
+  width: 42%;
+  height: 16%;
+  border-radius: 50%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08));
+  transform: rotate(-10deg);
+}
+
+.snakeHead.head-right::before {
+  top: 24%;
+  left: 24%;
+}
+
+.snakeHead.head-left::before {
+  top: 24%;
+  left: 12%;
+}
+
+.snakeHead.head-up::before {
+  top: 14%;
+  left: 18%;
+}
+
+.snakeHead.head-down::before {
+  top: 34%;
+  left: 18%;
+}
+
+.snakeHead.head-right::after {
+  top: 14%;
+  left: 34%;
+}
+
+.snakeHead.head-left::after {
+  top: 14%;
+  left: 14%;
+}
+
+.snakeHead.head-up::after {
+  top: 8%;
+  left: 20%;
+  transform: rotate(0deg);
+}
+
+.snakeHead.head-down::after {
+  top: 46%;
+  left: 20%;
+  transform: rotate(0deg);
 }
 
 .level-easy .snake {
@@ -138,6 +250,13 @@ body {
   background: $levelHard;
 }
 
+body.dark .level-medium .snake {
+  background: $levelMedium;
+}
+
+body.dark .level-hard .snake {
+  background:  $levelHard;
+}
 .startGameModal{
     display: flex;
     @include gameOverAndStartModal();
@@ -156,26 +275,15 @@ body {
     @include gameOverAndStartModal();
 }
 .gameOverModal button{
-  @include btnStartGameAndSettings();
+    @include btnStartGameAndSettings();
 }
 
-.pauseModal {
-  width: 40%;
-  height: 330px;
-  background: rgba(85, 177, 148, 0.6);
-  backdrop-filter: blur(12px);
-  position: absolute;
-  top: 20%;
-  left: 30%;
-  z-index: 999;
-  color: white;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  @include flexColumn();
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 25px 70px rgba(6, 219, 6, 0.35);
+.pauseModal{
+   @include modal(40%,20px,#80C480,60%);
+   justify-content: center;
+   align-items: center;
+   border-radius: 18px;
+   padding-block: 35px;
 }
 
 .pauseModal button{
@@ -183,23 +291,13 @@ body {
 }
 
 .settingsModal{
-    width: 52%;
-    height: 250px;
-    background-color: rgb(30, 141, 106);
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: 0 25px 70px rgba(6, 219, 6, 0.35);
-    backdrop-filter: blur(12px);
-    position: absolute;
-    top:29%;
-    left:23%;
-    gap: 10px;
-    padding-left: 30px;
-    color: white;
-    z-index: 999;
-    @include flexColumn();
+  @include modal(58%,10px,#F3FAEA,50%);
+  border-radius: 14px;
+  padding-bottom: 10px;
 }
 
 .settingsModalBtns{
+    padding-inline: 15px;
     gap: 13px;
     height: 115px;
     display: flex;
@@ -208,14 +306,19 @@ body {
 
 .settingsModalHeader{
     display: flex;
+    height: 60px;
     align-items: center;
+    background-color: #E5F3D9;
+    padding-inline: 15px;
     gap:10px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
 }
 
 .settingsModalHeader button{
     background-color: transparent;
-    font-size: 20px;
-    color: rgb(42, 42, 180);
+    font-size: 24px;
+    color: #33863F;
     border:none;
     cursor: pointer;
 }
@@ -225,9 +328,9 @@ body {
 }
 
 .settingsLevel{
-  width: 95%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 #btnLevel{
@@ -235,28 +338,31 @@ body {
 }
 
 .levelModal {
-  width: 75%;
-  background: linear-gradient(145deg, #1e1e2f, #141421);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  width: 60%;
+  background-color: #D9EDCD;
   @include flexCenter();
   gap: 10px;
   border-radius:$radius;
   z-index: 999;
   color: white;
+  padding: 8px 10px;
 }
 
 .levelModal button {
-  width: 28%;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid;
+  width: 30%;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid #9ECD98;
   cursor: pointer;
+  color: #9ECD98;
   font-size: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
-.active{
-    background-color: #1e1e2f;
-    color: white;
+.levelModal button.active {
+  background-color: #33863F;
+  color: white;
+  border-color: #33863F;
 }
 
 .settingsThemeBtn{
@@ -273,7 +379,7 @@ body {
 }
 
 .themeModal{
-    width: 50%;
+    width: 47%;
     height: 50px;
     background-color:transparent;
     @include flexCenter();
@@ -286,7 +392,7 @@ body {
 .themeToggle {
   width: 60px;
   height: 30px;
-  background: #1e293b;
+  background: #2C7736;
   border-radius: 20px;
   border: none;
   position: relative;
@@ -328,53 +434,39 @@ body.dark .themeToggle::before {
   right: 8px;
 }
 .settingsSave{
-  width: 100%;
-  height: 30px;
   display: flex;
   justify-content: flex-end;
+  padding-inline: 15px;
 }
 .settingsSave button{
-  @include btnStartGameAndSettings();
-  margin-right: 6%;
+  padding: 10px 30px;
+  background-color: #239D22;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
-
-#btnVolumeIcon{
-    display: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    position: absolute;
-    top:49%;
-    left:33%;
-    color: white;
-    margin-left: 10%;
-    z-index: 999;
+.settingsSave button:hover {
+  box-shadow: 0 12px 22px rgba(35, 157, 34, 0.32);
 }
 
 #mobileArrowButtons{
-    width: 90%;
-    height: 150px;
     display: none;
     flex-direction: column;
-    gap:2px;
     justify-content: center;
-    margin-top: 20px;
+    padding-block: 10px;
+    padding-inline: 10px;
 }
 .mobileArrowUp{
-    display: flex;
-    justify-content: center;
-    gap: 2px;
+    @include flexCenter();
 }
 .mobileArrowDown{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+    @include flexCenter();
 }
 .mobileArrowSights{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+    @include flexCenter();
+    gap: 20%;
 }
 
 #up,
@@ -383,7 +475,3 @@ body.dark .themeToggle::before {
 #right{
     @include mobileArrowBtn();
 }
-
-
-
-

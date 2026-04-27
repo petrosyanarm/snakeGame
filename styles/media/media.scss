@@ -4,13 +4,9 @@
     } 
     .settingsModal {
       width: 60%;
-      left: 20%;
     }
     .gameBox{
         height: auto;
-    }
-    .levelModal{
-      width: 66%;
     }
 
   }
@@ -21,7 +17,6 @@
     }
     .settingsModal {
       width: 60%;
-      left: 20%;
     }
     .gameBox{
       height: auto;
@@ -31,49 +26,76 @@
 
   @media (max-width: 768px) {
     .block{
-      width: 80%;
+      width: 88%;
     }
     .gameBox{
         height: auto;
     }
     .settingsModal {
       width: 75%;
-      left: 10%;
-    }
-    .pauseModal {
-      height: 270px;
     }
     .pauseModal button {
       height: 45px;
     }
-    .levelModal{
-      width: 76%;
-    }
   }
   
   @media (max-width: 480px) {
+    .gameBox{
+        max-height: 100vh;
+    }
     .page{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        max-height: calc(100vh - 50px);
     }
     .block {
       width: 100%;
+      padding-top: 10px;
+    }
+    .foodScoreRound img{
+      width: 30px;
+    }
+    .recordScoreCup img{
+      width: 30px;
+      height: 30px;
+    }
+    #btnStartGame{
+      width: 24%;
+    }
+    #btnSettings{
+      width: 24%;
+    }
+    #btnPause{
+      font-size: 28px;
+    }
+    #btnVolume{
+      font-size: 23px;
+    }
+    .gameOverModal button{
+      width: 22%;
     }
     #mobileArrowButtons{
         display: flex;
-        margin-top: 60px;
+        margin-top: 10px;
     }
     .mobileArrowUp{
         display: flex;
+    }
+    .mobileArrowDown{
+      margin-top: 0px;
+    }
+    .scores{
+      gap:15px;
     }
     .scoreBox {
       font-size: 12px;
     }
     .pauseModal {
-      top: 6%;
-      height: 270px;
+      width: 45%;
+      height: 200px;
+      top: 63%;
     }
     .pauseModal button {
       height: 45px;
@@ -83,19 +105,12 @@
     }
     .settingsModal {
       width: 80%;
-      left: 5%;
-      top:5%;
-      height: 270px;
-    }
-    .levelModal{
-      width: 68%;
-      padding-inline: 10px;
     }
     .levelModal button{
-      width: 30%;
+      width: 37%;
       height: 25px;
       border-radius: 5px;
-      font-size: 12px;
+      font-size: 10px;
     }
     #btnLevel{
       font-size: 12px;

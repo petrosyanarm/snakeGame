@@ -9,45 +9,48 @@ export function eventsUI({
   resumeGame,
   restartGame,
   closeAllModals,
-  state,
+  gameState,
   gameLoop,
   count,
   currentScore,
   setLoop,
-  levels,
+  LEVELS,
   game,
+  boardBox
 }) {
   buttons.startGame.addEventListener("click", () => {
     closeAllModals();
-    startGame(game, levels, state.level, setLoop, gameLoop);
+    startGame(game, LEVELS, gameState.level, setLoop, gameLoop);
   });
 
-  document.addEventListener("keydown", handlePauseKey);
+  document.addEventListener("keydown", (event) => handlePauseKey(event, boardBox));
+
 
   buttons.pause.addEventListener("click", () => {
-    pauseGame();
+    pauseGame(boardBox);
   });
 
   buttons.resume.addEventListener("click", () => {
-    resumeGame(startGame);
+    resumeGame(startGame,boardBox);
   });
 
   buttons.restart.addEventListener("click", () => {
-    restartGame(state, gameLoop, startGame, count, modals, currentScore);
+    restartGame(gameState, gameLoop, startGame, count, modals, currentScore,boardBox);
   });
 
   buttons.mainMenu.addEventListener("click", () => {
-    resetGame(state, count, currentScore);
+    resetGame(gameState, count, currentScore);
     closeAllModals();
+    boardBox.classList.remove('paused')
     modals.start.style.display = "flex";
   });
 
   buttons.gameOverRestart.addEventListener("click", () => {
-    restartGame(state, gameLoop, startGame, count, modals, currentScore);
+    restartGame(gameState, gameLoop, startGame, count, modals, currentScore,boardBox);
   });
 
   buttons.gameOverBtnMainMenu.addEventListener("click", () => {
-    resetGame(state, count, currentScore);
+    resetGame(gameState, count, currentScore);
     closeAllModals();
     modals.start.style.display = "flex";
   });

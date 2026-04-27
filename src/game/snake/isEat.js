@@ -1,3 +1,3 @@
-export function isEat(nextHead, state) {
-  return nextHead.x === state.food.x && nextHead.y === state.food.y;
+export function isEat(nextHead,food) {
+  return nextHead.x === food.x && nextHead.y === food.y;
 }

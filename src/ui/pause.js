@@ -7,23 +7,24 @@ export function setLoop(newLoop) {
   loop = newLoop;
 }
 
-export function pauseGame() {
+export function pauseGame(boardBox) {
   if (loop === null) return;
 
   clearInterval(loop);
+  boardBox.classList.add('paused')
   modals.pause.style.display = "flex";
   paused = true;
 }
 
-export function handlePauseKey(event) {
+export function handlePauseKey(event,boardBox) {
   if (event.key === "p") {
-    pauseGame();
+    pauseGame(boardBox);
   }
 }
 
-export function resumeGame(startGame) {
+export function resumeGame(startGame,boardBox) {
   if (!paused) return;
-
+  boardBox.classList.remove('paused')
   modals.pause.style.display = "none";
   startGame();
 

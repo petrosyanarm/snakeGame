@@ -1,12 +1,13 @@
-const KEY = "snakeRecords";
+import { DEFAULT_RECORDS, KEY } from "../../utils/constants.js";
+
 export function loadRecords() {
-  return (
-    JSON.parse(localStorage.getItem(KEY)) || {
-      easy: 0,
-      medium: 0,
-      hard: 0,
-    }
-  );
+  const data = JSON.parse(localStorage.getItem(KEY));
+  
+  if (data) {
+    return data;
+  } else {
+    return DEFAULT_RECORDS;
+  }
 }
 
 export function saveRecords(records) {

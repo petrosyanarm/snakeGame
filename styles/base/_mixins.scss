@@ -3,7 +3,7 @@
 @mixin gameOverAndStartModal(){
     width: 100%;
     height: 100%;
-    background-color: rgb(85, 177, 148);
+    background-color: #80C480;
     position: absolute;
     left: 0;
     top: 0;
@@ -15,11 +15,6 @@
     z-index: 999;
 }
 
-@mixin flexColumn(){
-    display: none;
-    flex-direction: column;
-    border-radius: 20px;
-}
 
 @mixin flexCenter(){
     display: flex;
@@ -27,14 +22,29 @@
     align-items: center;
 }
 
-@mixin flex($justify: center, $align: center) {
+@mixin flex($justify, $align) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
 }
 
+@mixin modal($width,$gap,$bg,$top){
+    width: $width;
+    gap: $gap;
+    background: $bg;
+    border: 1px solid rgba(255,255,255,0.2);
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    color: #33863F;
+    z-index: 999;
+    top: $top;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 @mixin mobileArrowBtn(){
-    width: 60px;
+    width: 45px;
     aspect-ratio: 1/1;
     border-radius: 50%;
     border: none;
@@ -49,7 +59,7 @@
 @mixin pauseModalButton(){
     width: 120px;
     height: 53px;
-    background-color: rgb(42, 42, 180);
+    background-color: #239D22;
     color: white;
     font-size: 14px;
     cursor: pointer;
@@ -58,9 +68,9 @@
 }
 
 @mixin btnStartGameAndSettings(){
-    width: 20%;
-    height: 40px;
-    background-color: $bgHeader;
+    width: 18%;
+    height: 35px;
+    background-color: #239D22;
     border: none;
     color: white;
     border-radius: 10px;
@@ -69,13 +79,11 @@
 }
 
 @mixin settingsModalBtns(){
-    width: 100%;
     height: 50px;
-    background-color:rgb(42, 42, 180);
-    color: white;
+    background-color:transparent;
+    color: #235533;
     font-size: 14px;
     cursor: pointer;
     animation-duration: 300s;
-    border-radius: 15px;
     border: none;
 }

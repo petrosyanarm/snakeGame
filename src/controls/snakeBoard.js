@@ -1,6 +1,4 @@
-const board = document.querySelector(".board");
-
-export function snakeBoard(count, cells, grid) {
+export function snakeBoard(count, cells, grid,boardBox) {
   grid.classList.add("grid");
 
   grid.style.gridTemplateColumns = `repeat(${count}, 1fr)`;
@@ -8,18 +6,15 @@ export function snakeBoard(count, cells, grid) {
 
   for (let i = 0; i < count; i++) {
     for (let j = 0; j < count; j++) {
-      const cell = document.createElement("div");
+      const position = document.createElement("div");
 
-      cell.classList.add("cell");
-      cells.push(cell);
+      position.classList.add("cell");
+      cells.push(position);
 
-      if ((i + j) % 2 === 0) {
-        cell.classList.add("cell-dark");
-      }
-      grid.append(cell);
+      grid.append(position);
     }
   }
-  board.append(grid);
+  boardBox.append(grid);
 
   return grid;
 }

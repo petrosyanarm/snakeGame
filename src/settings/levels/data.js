@@ -1,4 +1,4 @@
-export const levels = {
+export const LEVELS = {
   easy: {
     speed: 400,
     unlockScore: 0,
