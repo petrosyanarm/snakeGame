@@ -1,0 +1,134 @@
+@media (max-width: 1440px) {
+    .block {
+      width: 50%;
+    } 
+    .settingsModal {
+      width: 60%;
+    }
+    .gameBox{
+        height: auto;
+    }
+
+  }
+
+@media (max-width: 1024px) {
+    .block{
+      width: 70%;
+    }
+    .settingsModal {
+      width: 60%;
+    }
+    .gameBox{
+      height: auto;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .block{
+      width: 88%;
+    }
+    .gameBox{
+        height: auto;
+    }
+    .foodScoreRound img, .recordScoreCup img{
+      width: 33px;
+      height: 33px;
+    }
+    #btnPause{
+      font-size: 30px;
+    }
+    #btnVolume{
+      font-size: 25px;
+    }
+    .settingsModal {
+      width: 75%;
+    }
+    .pauseModal button {
+      height: 45px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .gameBox{
+        max-height: 100vh;
+    }
+    .page{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-height: calc(100vh - 50px);
+    }
+    .block {
+      width: 100%;
+      padding-top: 10px;
+    }
+    .foodScoreRound img{
+      width: 30px;
+    }
+    .recordScoreCup img{
+      width: 30px;
+      height: 30px;
+    }
+    #btnStartGame{
+      width: 24%;
+    }
+    #btnSettings{
+      width: 24%;
+    }
+    #btnPause{
+      font-size: 28px;
+    }
+    #btnVolume{
+      font-size: 23px;
+    }
+    .gameOverModal button{
+      width: 22%;
+    }
+    #mobileArrowButtons{
+        display: flex;
+        margin-top: 10px;
+    }
+    .mobileArrowUp{
+        display: flex;
+    }
+    .mobileArrowDown{
+      margin-top: 0px;
+    }
+    .scores{
+      gap:15px;
+    }
+    .scoreBox {
+      font-size: 12px;
+    }
+    .pauseModal {
+      width: 45%;
+      height: 200px;
+      top: 63%;
+    }
+    .pauseModal button {
+      height: 45px;
+    }
+    .board{
+      padding: 15px;
+    }
+    .settingsModal {
+      width: 80%;
+    }
+    #btnVolume.muted::after {
+      width: 40px;
+    }
+    .levelModal button{
+      width: 37%;
+      height: 25px;
+      border-radius: 5px;
+      font-size: 10px;
+    }
+    #btnLevel{
+      font-size: 12px;
+    }
+    #btnTheme{
+      font-size: 12px;
+    }
+  }
